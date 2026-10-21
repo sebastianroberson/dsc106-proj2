@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Project 2 Report</title>
+        <style>
+            :root {
+                --color-neutral-95: hsl(220 10% 95%);
+                --color-neutral-90: hsl(220 10% 90%);
+                --color-neutral-80: hsl(220 10% 80%);
+                --color-neutral-70: hsl(220 10% 70%);
+                --color-neutral-60: hsl(220 10% 60%);
+                --color-neutral-50: hsl(220 10% 50%);
+                --color-neutral-40: hsl(220 10% 40%);
+                --color-neutral-30: hsl(220 10% 30%);
+                --color-neutral-20: hsl(220 10% 20%);
+                --color-neutral-10: hsl(220 10% 10%);
+            }
+
+            html {
+                font: 100%/1.5 system-ui;
+                counter-reset: figure;
+                background: var(--color-neutral-95);
+                max-width: min(75vw, 80em);
+                margin: 0 auto;
+            }
+
+            /* Headings */
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                line-height: 1.1;
+                font-weight: 600;
+                text-wrap: balance;
+            }
+
+            h1,
+            h2 {
+                border-bottom: 1px solid var(--color-neutral-80);
+                padding-bottom: 0.2em;
+            }
+
+            h1 {
+                margin-block: 1em 0.5rem;
+                font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+                font-weight: 800;
+
+                small {
+                    display: block;
+                    width: fit-content;
+                    padding: 0.2em 0.5em;
+                    margin-inline: auto;
+                    color: white;
+                    background: var(--color-neutral-40);
+                    font-size: 40%;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                }
+            }
+
+            h2 {
+                font-size: 180%;
+                color: var(--color-neutral-30);
+            }
+
+            h3 {
+                font-size: 130%;
+            }
+
+            /* Lists */
+
+            ul,
+            ol {
+                padding-inline-start: 2em;
+            }
+
+            li {
+                &::marker {
+                    color: var(--color-neutral-40);
+                }
+
+                + li {
+                    margin-top: 0.2em;
+                }
+            }
+
+            /* Sectioning elements */
+
+            header {
+                padding-block: 1em;
+                text-align: center;
+            }
+
+            main {
+                background: white;
+                color: var(--color-neutral-20);
+                border-radius: 1rem;
+                padding: 0.1rem 2rem;
+            }
+
+            /* Figures */
+
+            figure {
+                margin: 1em 0;
+                padding: 0.5rem;
+                margin-inline: -0.5em;
+                border: 1px solid var(--color-neutral-80);
+                box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+                text-align: center;
+                background: white;
+
+                > figcaption {
+                    font: 500 75% var(--font-sans);
+                    background: var(--color-neutral-95);
+                    padding: 0.5rem;
+                    margin: -0.5rem;
+                    margin-top: 0.5rem;
+                    counter-increment: figure;
+                    text-align: left;
+
+                    &::before {
+                        content: "Figure " counter(figure) ": ";
+                        font-weight: bold;
+                        color: var(--color-neutral-40);
+                    }
+
+                    a:not(:hover, :focus, :active) {
+                        color: inherit;
+                        text-decoration: underline;
+                        text-decoration-color: color-mix(
+                            in lab,
+                            currentColor,
+                            transparent 70%
+                        );
+                    }
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>
+                <small>Project 2</small>
+                Persuasive or Deceptive Visualization?
+            </h1>
+
+            <p><strong>Sebastian Roberson</strong> — <em>sroberson@ucsd.edu</em></p>
+        </header>
+
+        <main>
+            <h2>Proposition: The expansion of abortion clinics and providers directly drives up abortion rates and local access across U.S. states</h2>
+
+            <section>
+                <h3>FOR the Proposition</h3>
+
+                <figure>
+                    <img src="images/viz-1.png" alt="" width="600" height="400"/>
+                    <figcaption>Scatterplot showing the relationship between clinic expansion and abortion rates across all U.S. states.</figcaption>
+                </figure>
+
+                <p>Design Decisions and Rationale:</p>
+
+                <ul>
+                    <li>Uses raw state-level cross-sectional data from the Guttmacher Institute dataset,
+                         directly observing the relationship between the number of clinics in the state and the 
+                         abortion rates per 1000 women aged 15-44 in 2020 without truncating or filtering the data. </li>
+                    <li>Uses a teal-colored scatter plot with a OLS regression line labeled with a 95% confidence interval
+                         providing a visual indidcator of variance while demonstrating an association. </li>
+                    <li>The title frames the trend around regional relationships, while the positive regression visually 
+                        persuades the reader that there is a positive relationship between clinic expansion and abortion rates.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>AGAINST the Proposition</h3>
+
+                <figure>
+                    <img src="images/viz-2.png" alt="" width="600" height="400"/>
+                    <figcaption>Scatterplot that compares the relationship between clinic expansion and abortion rates with clinics filtered less than 30 clinics in the given state.</figcaption>
+                </figure>
+
+                <p>Design Decisions and Rationale:</p>
+
+                <ul>
+                    <li>This visualization implements data filtering to remove major outliers states that have a 
+                        clinic count much greater than the rest of the nation to reduce the variance. </li>
+                    <li>It is styled to match visualization 1 so that it can be easitly compared to its effect.</li>
+                    <li>By stripping away the outliers that skew the data, the trend line flattens significantly to show if there is a meaningful variation
+                        when viewed outside of extreme outliers.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Final Reflection</h2>
+
+                <p>Designing these two opposing visualizations from the same underlying dataset highlights how thin the line is between objective analysis 
+                    and persuasion. While the earnest chart relies on focusing on making sure the data is presented accurately without outliers, while the deceptive chart achieves its rhetorical goal not 
+                    through not cleaning the data properly allowing outliers to skew the results. Both approaches demonstrate that 
+                    visualization is inherently rhetorical, where design choices regarding scope, titles, and encodings actively shape what conclusions a reader draws</p>
+            </section>
+        </main>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"c822b88e119346678db149ed7b7721c9","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
